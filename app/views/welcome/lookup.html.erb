@@ -1,0 +1,14 @@
+<h3>Search for specific symbols or companies</h3>
+<br/>
+
+<%= form_tag welcome_lookup_path :method => 'POST' do %>
+    <%= text_field_tag 'sym', nil, placeholder: 'Enter A Symbol Or Company' , size: 50 %>
+    <%= submit_tag 'Lookup Stock Symbols' %>
+<% end %>
+<br/>
+<br/>
+<p> Results for: " <%=@sym_search%> " </p>
+
+<%for items in @result['bestMatches']%>
+    <%= items['1. symbol'] %>
+<%end%>

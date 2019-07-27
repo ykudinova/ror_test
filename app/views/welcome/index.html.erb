@@ -1,2 +1,15 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Welcome To Commodities Tracker!</h1>
+
+<%= @url %>
+<br/>
+<br/>
+<%= @ticks %>
+
+<br/>
+
+<% for quote in @ticks %>
+    <hr>
+    <% quote["Global Quote"].each do |key, item| %>
+        <p><%=key%>:<%=item%></p>
+    <% end %>
+<% end %> 
