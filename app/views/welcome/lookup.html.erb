@@ -9,6 +9,29 @@
 <br/>
 <p> Results for: " <%=@sym_search%> " </p>
 
-<%for items in @result['bestMatches']%>
-    <%= items['1. symbol'] %>
-<%end%>
+<table class="table table-bordered table-stripped">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Region</th>
+            <th>Timezone</th>
+            <th>Currency</th>
+            <th>Add</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%for items in @result['bestMatches']%>
+            <tr>
+                <td><%= items['1. symbol'] %></td>
+                <td><%= items['2. name'] %></td>
+                <td><%= items['3. type'] %></td>
+                <td><%= items['4. region'] %></td>
+                <td><%= items['7. timezone'] %></td>
+                <td><%= items['8. currency'] %></td>
+                <td><%= link_to 'Add', new_stock_path(symb: items['1. symbol'])%></td>
+            </tr>
+        <%end%>
+    <tbody>
+</table>

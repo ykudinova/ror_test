@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  user_id: 1
+  price: 9.99
+  retrieved: 2019-07-28 17:49:12
+  notes: MyText
+
+two:
+  symbol: MyString
+  user_id: 1
+  price: 9.99
+  retrieved: 2019-07-28 17:49:12
+  notes: MyText
