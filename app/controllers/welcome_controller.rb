@@ -15,12 +15,22 @@ class WelcomeController < ApplicationController
     }
 
     @ticks = []
-
     symb_pairs.each do |key, symb|
       @url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol='+symb+'&apikey='+key
       @uri = URI(@url)
       @response = Net::HTTP.get(@uri)
-      @ticks.push(JSON.parse(@response))
+      if(@response['Global Quote'])
+        @ticks.push(JSON.parse(@response))
+      else
+        json_error = {
+          "Global Quote"=> {
+              "01. symbol"=> symb,
+              "02. api key"=> key,
+              "03 error"=> Net::HTTP.get(@uri),
+            }
+          }
+        @ticks.push(json_error)
+      end
     end
   end
 
