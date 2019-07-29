@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @stock_list.name %>
+</p>
+
+<p class="hidden">
+  <strong>User:</strong>
+  <%= @stock_list.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_stock_list_path(@stock_list), class:"btn btn-default" %> 
+<%= link_to 'Stock List', stock_lists_path, class:"btn btn-default" %>

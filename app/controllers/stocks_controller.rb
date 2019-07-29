@@ -7,6 +7,7 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index
     @stocks = Stock.all.where(user_id: current_user.id)
+    @stock_lists = StockList.all.where(user_id: current_user.id)
   end
 
   # GET /stocks/1
@@ -17,6 +18,7 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @symbol = params['symb']
+    @stock_list_id = params['list']
 
     key = '6XKJ0JAWIHVMSEKA'
     @url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol='+@symbol+'&apikey='+key
@@ -96,7 +98,7 @@ class StocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:symbol, :user_id, :price, :retrieved, :notes)
+      params.require(:stock).permit(:symbol, :user_id, :price, :retrieved, :notes, :stock_list_id, :stockList)
     end
 
     def correct_user

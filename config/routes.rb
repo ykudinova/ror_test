@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stock_lists
   resources :stocks
   get 'welcome/lookup'
   post 'welcome/lookup'=>'welcome/lookup'

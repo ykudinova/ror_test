@@ -3,11 +3,14 @@
 
 <%= form_tag welcome_lookup_path :method => 'POST' do %>
     <%= text_field_tag 'sym', nil, placeholder: 'Enter A Symbol Or Company' , size: 50 %>
+    <div class="hidden">
+        <%= text_field_tag 'list_id', value=@list_id%>
+    </div>
     <%= submit_tag 'Lookup Stock Symbols' %>
 <% end %>
 <br/>
 <br/>
-<p> Results for: " <%=@sym_search%> " </p>
+<p> Results for: " <%=@sym_search%> " To add to <%=@list_id%> </p>
 
 <table class="table table-bordered table-stripped">
     <thead>
@@ -30,7 +33,7 @@
                 <td><%= items['4. region'] %></td>
                 <td><%= items['7. timezone'] %></td>
                 <td><%= items['8. currency'] %></td>
-                <td><%= link_to 'Add', new_stock_path(symb: items['1. symbol'])%></td>
+                <td><%= link_to 'Add', new_stock_path(symb: items['1. symbol'], list: @list_id)%></td>
             </tr>
         <%end%>
     <tbody>

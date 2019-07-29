@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class ="panel-title">Add New Stock List</h2>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= form_with(model: stock_list, local: true) do |form| %>
+        <% if stock_list.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(stock_list.errors.count, "error") %> prohibited this stock_list from being saved:</h2>
+
+            <ul>
+            <% stock_list.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :stock_list_name, class:"form-control" %>
+        </div>
+
+        <div class="field hidden">
+          <%= form.label :user_id %>
+          <%= form.text_field :user_id, id: :stock_list_user_id, value:current_user.id %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class:"btn btn-default"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

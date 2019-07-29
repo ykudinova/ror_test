@@ -37,6 +37,8 @@ class WelcomeController < ApplicationController
 
   def lookup
     
+    @list_id = params[:list_id]
+
     @sym_search = params[:sym]
     if @sym_search
       @sym_search = @sym_search.upcase

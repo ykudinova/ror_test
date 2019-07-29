@@ -3,7 +3,7 @@
   <%= @stock.symbol %>
 </p>
 
-<p>
+<p class="hidden">
   <strong>User:</strong>
   <%= @stock.user_id %>
 </p>
@@ -23,4 +23,4 @@
   <%= @stock.notes %>
 </p>
 
-<%= link_to 'Back', stocks_path %>
+<%= link_to 'Home', stocks_path, class:"btn btn-default" %>

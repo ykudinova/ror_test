@@ -16,9 +16,23 @@
   <h2><%=@price%></h2>
   <br/>
 
+  <%
+=begin%>
+ <div class="field">
+    <%= form.collection_select :stock_list_id, StockList.all, :id, :name, include_blank: false %>
+    <%= form.number_field :stockList, id: :stock_stockList, value:'0' %>  
+  </div> 
+<%
+=end%>
+
+
   <div class="hidden">
+
+    <%= form.number_field :stockList, id: :stock_stockList, value:'0' %> 
+    <%= form.number_field :stock_list_id, id: :stock_stock_list_id, value:@stock_list_id %>  
+
     <div class="field">
-      <%= form.text_field :symbol, id: :stock_symbol, value:@symbol %>
+      <%= form.text_field :symbol, id: :stock_symbol, value:@symbol %>      
     </div>
 
     <div class="field">
@@ -38,6 +52,6 @@
     </div>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-default" %>
   </div>
 <% end %>
