@@ -13,6 +13,9 @@
 
   <h3>Add <%=@symbol%> To Your Stock List?</h3>
 
+  <h2><%=@price%></h2>
+  <br/>
+
   <div class="hidden">
     <div class="field">
       <%= form.text_field :symbol, id: :stock_symbol, value:@symbol %>
@@ -35,6 +38,6 @@
     </div>
   </div>
   <div class="actions">
-    <%= form.submit onchange:'this.form.submit()'%>
+    <%= form.submit %>
   </div>
 <% end %>

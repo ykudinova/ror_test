@@ -27,7 +27,7 @@ class WelcomeController < ApplicationController
           "Global Quote"=> {
               "01. symbol"=> symb,
               "02. api key"=> key,
-              "03 error"=> Net::HTTP.get(@uri),
+              "03. error"=> Net::HTTP.get(@uri),
             }
           }
         @ticks.push(json_error)

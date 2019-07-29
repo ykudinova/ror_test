@@ -6,7 +6,7 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    @stocks = Stock.all
+    @stocks = Stock.all.where(user_id: current_user.id)
   end
 
   # GET /stocks/1
@@ -17,8 +17,8 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @symbol = params['symb']
-    key = '6XKJ0JAWIHVMSEKA'
 
+    key = '6XKJ0JAWIHVMSEKA'
     @url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol='+@symbol+'&apikey='+key
     @uri = URI(@url)
     @response = JSON.parse(Net::HTTP.get(@uri))
@@ -33,7 +33,13 @@ class StocksController < ApplicationController
       else
         @notes = 'Failed to get price'
       end
-    end  
+    end
+
+    if(@price)
+      @price = '%.2f' % @price.to_f
+    else
+      @price = '0.00'
+    end
 
     @stock = Stock.new
   end
