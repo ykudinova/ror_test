@@ -75,7 +75,7 @@ class StockListsController < ApplicationController
     end
 
     def correct_user
-      @correct = current_user.stock.find_by(id: params[:id])
+      @correct = current_user.stock_list.find_by(id: params[:id])
       redirect_to stocks_path, notice: "Not Autherized to edit this entry" if @correct.nil?
     end
 end

@@ -3,24 +3,43 @@
   <%= @stock.symbol %>
 </p>
 
-<p class="hidden">
-  <strong>User:</strong>
-  <%= @stock.user_id %>
-</p>
+<div class="hidden">
+  <p>
+    <strong>User:</strong>
+    <%= @stock.user_id %>
+  </p>
+  <p>
+    <strong>Price:</strong>
+    <%= @stock.price %>
+  </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @stock.price %>
-</p>
+  <p>
+    <strong>Retrieved:</strong>
+    <%= @stock.retrieved %>
+  </p>
 
-<p>
-  <strong>Retrieved:</strong>
-  <%= @stock.retrieved %>
-</p>
+  <p>
+    <strong>Notes:</strong>
+    <%= @stock.notes %>
+  </p>
+</div>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @stock.notes %>
-</p>
+
+<% @records.each do |rec|%>
+  <hr>
+  <%if rec.note.nil? || rec.note.strip.empty? %>
+    <strong>Price:</strong>
+    <%= rec.price %><br/>
+    <strong>Retrieved:</strong>
+    <%= rec.date%><br/>
+  <%else%>
+    <strong>Retrieve Attempt</strong>
+    <%= rec.date%><br/>
+    <strong>Note:</strong>
+    <%=rec.note%>
+  <%end%>
+  <hr>
+<%end%>
+
 
 <%= link_to 'Home', stocks_path, class:"btn btn-default" %>

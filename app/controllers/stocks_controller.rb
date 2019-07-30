@@ -8,11 +8,15 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.all.where(user_id: current_user.id)
     @stock_lists = StockList.all.where(user_id: current_user.id)
+
+    GetPricesJob.perform_now
+
   end
 
   # GET /stocks/1
   # GET /stocks/1.json
   def show
+    @records = Record.all.where(stock_id: @stock.id).reverse
   end
 
   # GET /stocks/new
@@ -44,6 +48,7 @@ class StocksController < ApplicationController
     end
 
     @stock = Stock.new
+
   end
 
   # GET /stocks/1/edit
@@ -54,9 +59,14 @@ class StocksController < ApplicationController
   # POST /stocks.json
   def create
     @stock = Stock.new(stock_params)
-
     respond_to do |format|
       if @stock.save
+        record = Record.new
+        record.price = @stock[:price]
+        record.stock_id = @stock[:id]
+        record.note = @stock[:notes]
+        record.date = @stock[:retrieved]
+        record.save
         format.html { redirect_to stocks_path, notice: 'Stock was successfully created.' }
         format.json { render :show, status: :created, location: stocks_path }
       else
