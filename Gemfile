@@ -34,6 +34,8 @@ gem 'redis-namespace'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#sidekiq for active job
+gem 'sidekiq'
 
 #Gems for bootstrap
 gem 'jquery-rails'

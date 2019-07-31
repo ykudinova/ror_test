@@ -42,6 +42,6 @@ class GetPricesJob < ApplicationJob
       end
     end
   end
-end
+  #GetPricesJob.set(wait: 2.minute).perform_later()
 
-GetPricesJob.perform_now()
+end

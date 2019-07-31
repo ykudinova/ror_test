@@ -38,6 +38,9 @@ class WelcomeController < ApplicationController
   def lookup
     
     @list_id = params[:list_id]
+    list = StockList.find(params[:list_id])
+    @list_name = list.name
+
 
     @sym_search = params[:sym]
     if @sym_search

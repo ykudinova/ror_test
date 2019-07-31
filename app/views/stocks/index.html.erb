@@ -25,11 +25,12 @@
 
     <tbody>
       <% @stocks.where(stock_list_id: cur_list.id).each do |stock| %>
+        <% rec= Record.all.where(stock_id: stock.id).reverse[0]%>
         <tr>
           <td><%= stock.symbol %></td>
-          <td><%= number_to_currency(stock.price) %></td>
-          <td><%= stock.retrieved %></td>
-          <td><%= stock.notes %></td>
+          <td><%= number_to_currency(rec.price) %></td>
+          <td><%= rec.date %></td>
+          <td><%= rec.note %></td>
           <td><%= link_to 'Show More', stock %></td>
           <td><%= link_to 'Remove', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

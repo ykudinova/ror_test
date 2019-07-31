@@ -9,7 +9,7 @@ class StocksController < ApplicationController
     @stocks = Stock.all.where(user_id: current_user.id)
     @stock_lists = StockList.all.where(user_id: current_user.id)
 
-    GetPricesJob.perform_now
+    #GetPricesJob.perform_now
 
   end
 
