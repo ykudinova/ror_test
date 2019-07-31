@@ -48,7 +48,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
   port: 5432
-  password: meow
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
