@@ -27,7 +27,10 @@
 <%= line_chart Record.where(stock_id: @stock.id).where("price > ?", 0).group_by_day(:date).average(:price), 
   max: Record.where(stock_id: @stock.id).where("price > ?", 0).maximum(:price) +1, 
   min: Record.where(stock_id: @stock.id).where("price > ?", 0).minimum(:price) -1, 
-  xtitle:"Date", ytitle:"Price" %>
+  xtitle:"Date", ytitle:"Price",
+  library: { plotOptions: {
+              series: {
+                connectNulls:"true" }}} %>
 
 <% @records.each do |rec|%>
   <hr>

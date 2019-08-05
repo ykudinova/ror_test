@@ -16,7 +16,7 @@ class StocksController < ApplicationController
   # GET /stocks/1
   # GET /stocks/1.json
   def show
-    @records = Record.all.where(stock_id: @stock.id).limit(5).reverse
+    @records = Record.all.where(stock_id: @stock.id).order(date: :desc).limit(5)
   end
 
   # GET /stocks/new
