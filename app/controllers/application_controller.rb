@@ -3,5 +3,5 @@ class ApplicationController < ActionController::Base
 
   #GetPricesJob.set(wait: 5.minute).perform_later()
   #GetPricesJob.perform_now()
-  PriceWorker.perform_async()
+  #PriceWorker.perform_async()
 end

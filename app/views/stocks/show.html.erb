@@ -24,6 +24,10 @@
   </p>
 </div>
 
+<%= line_chart Record.where(stock_id: @stock.id).group_by_day(:date).average(:price), 
+  max: Record.where(stock_id: @stock.id).maximum(:price) * 1.01, 
+  min: Record.where(stock_id: @stock.id).minimum(:price) * 0.99, 
+  xtitle:"Date", ytitle:"Price" %>
 
 <% @records.each do |rec|%>
   <hr>
@@ -38,8 +42,7 @@
     <strong>Note:</strong>
     <%=rec.note%>
   <%end%>
-  <hr>
 <%end%>
-
+<hr>
 
 <%= link_to 'Home', stocks_path, class:"btn btn-default" %>

@@ -35,6 +35,11 @@ gem 'redis-namespace'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#chartkick, highcharts and groupdate for making charts
+gem 'groupdate'
+gem 'highcharts-rails'
+gem 'chartkick'
+
 #sidekiq for active job
 gem 'sidekiq'
 
