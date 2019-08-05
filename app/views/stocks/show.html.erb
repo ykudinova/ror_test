@@ -24,9 +24,9 @@
   </p>
 </div>
 
-<%= line_chart Record.where(stock_id: @stock.id).group_by_day(:date).average(:price), 
-  max: Record.where(stock_id: @stock.id).maximum(:price) * 1.01, 
-  min: Record.where(stock_id: @stock.id).minimum(:price) * 0.99, 
+<%= line_chart Record.where(stock_id: @stock.id).where("price > ?", 0).group_by_day(:date).average(:price), 
+  max: Record.where(stock_id: @stock.id).where("price > ?", 0).maximum(:price) +1, 
+  min: Record.where(stock_id: @stock.id).where("price > ?", 0).minimum(:price) -1, 
   xtitle:"Date", ytitle:"Price" %>
 
 <% @records.each do |rec|%>
